@@ -11,6 +11,9 @@ class MindMapView : public QQuickPaintedItem
 public:
     MindMapView(QQuickItem *parent = nullptr);
     void paint(QPainter *painter);
+
+private:
+    MmNode *m_root;
 };
 
 #endif // MINDMAPWIDGET_H

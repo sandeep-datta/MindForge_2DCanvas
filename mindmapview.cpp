@@ -2,6 +2,7 @@
 
 MindMapView::MindMapView(QQuickItem *parent)
     : QQuickPaintedItem(parent)
+    , m_root(nullptr)
 {
     setAntialiasing(true);
     setOpaquePainting(true);
@@ -9,20 +10,27 @@ MindMapView::MindMapView(QQuickItem *parent)
 
 void MindMapView::paint(QPainter *painter)
 {
-    QPainterPath path;
-    path.addRect(20, 20, 60, 60);
+//    QPainterPath path;
+//    path.addRect(20, 20, 60, 60);
 
-    path.moveTo(0, 0);
-    path.cubicTo(99, 0,  50, 50,  99, 99);
-    path.cubicTo(0, 99,  50, 50,  0, 0);
+//    path.moveTo(0, 0);
+//    path.cubicTo(99, 0,  50, 50,  99, 99);
+//    path.cubicTo(0, 99,  50, 50,  0, 0);
 
-    painter->fillRect(contentsBoundingRect(), Qt::white);
+//    painter->fillRect(contentsBoundingRect(), Qt::white);
 
-    painter->setPen(QPen(QColor(79, 106, 25), 1, Qt::SolidLine,
-                        Qt::FlatCap, Qt::MiterJoin));
-    painter->setBrush(QColor(122, 163, 39));
+//    painter->setPen(QPen(QColor(79, 106, 25), 1, Qt::SolidLine,
+//                        Qt::FlatCap, Qt::MiterJoin));
+//    painter->setBrush(QColor(122, 163, 39));
 
-    painter->drawPath(path);
+//    painter->drawPath(path);
+
+    if (!m_root) {
+        painter->fillRect(contentsBoundingRect(), Qt::gray);
+        return;
+    }
+
+
 
 
 }
