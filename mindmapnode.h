@@ -10,10 +10,11 @@ class MindMapNode : public QObject
     Q_OBJECT
 public:
     explicit MindMapNode(QObject *parent = 0);
-    const QRectF *boundingRect() const;
-    void paint(QPainter *painter, const QRectF &paintableArea);
+    const QRectF boundingRect(QPainter *painter) const;
+    void paint(QPainter *painter);
     void setText(const QString &text);
-    const qreal MAX_WIDTH = 600.0;
+    void addChild(MindMapNode *child);
+    const qreal MAX_WIDTH = 300.0;
     void setPos(qreal x, qreal y);
 
 signals:
@@ -25,10 +26,8 @@ private: //Methods
 
 private: //Variables
     QString m_text;
-    QList<MindMapNode> m_children;
+    QList<MindMapNode*> m_children;
     QRectF m_bounds;
-    bool   m_boundsValid;
-
 };
 
 #endif // MMNODE_H

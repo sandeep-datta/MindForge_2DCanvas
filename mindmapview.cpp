@@ -24,14 +24,21 @@ void MindMapView::paint(QPainter *painter)
 //    painter->setBrush(QColor(122, 163, 39));
 
 //    painter->drawPath(path);
+    QRectF paintableRect = contentsBoundingRect();
 
     if (!m_root) {
-        painter->fillRect(contentsBoundingRect(), Qt::gray);
+        painter->fillRect(paintableRect, Qt::gray);
         return;
     }
 
-    painter->fillRect(contentsBoundingRect(), Qt::white);
-    m_root->paint(painter, contentsBoundingRect());
+    painter->fillRect(paintableRect, Qt::white);
+
+    qreal y = (paintableRect.height() -
+               m_root->boundingRect(painter).height())/2;
+
+    m_root->setPos(paintableRect.left(), y);
+
+    m_root->paint(painter);
 }
 
 void MindMapView::setRootNode(MindMapNode *root)
