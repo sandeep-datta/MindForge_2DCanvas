@@ -14,7 +14,7 @@ public:
     void paint(QPainter *painter, const QRectF &paintableArea);
     void setText(const QString &text);
     const qreal MAX_WIDTH = 600.0;
-    void setPos(const QPointF& pos);
+    void setPos(qreal x, qreal y);
 
 signals:
 

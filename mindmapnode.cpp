@@ -19,6 +19,13 @@ const QRectF* MindMapNode::boundingRect() const
 
 void MindMapNode::paint(QPainter *painter, const QRectF& paintableArea)
 {
+    m_bounds = painter->boundingRect(m_bounds,
+                                     Qt::TextWordWrap|Qt::TextDontClip,
+                                     m_text);
+
+    setPos(paintableArea.left(),
+           (paintableArea.height()-m_bounds.height())/2);
+
     painter->drawText(m_bounds, Qt::TextWordWrap|Qt::TextDontClip,
                       m_text, &m_bounds);
     m_boundsValid = true;
@@ -33,7 +40,7 @@ void MindMapNode::setText(const QString &text)
     m_boundsValid = false;
 }
 
-void MindMapNode::setPos(const QPointF& pos)
+void MindMapNode::setPos(qreal x, qreal y)
 {
-    m_bounds.setTopLeft(pos);
+    m_bounds.setTopLeft(QPointF(x, y));
 }
