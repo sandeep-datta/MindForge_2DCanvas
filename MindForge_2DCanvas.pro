@@ -3,7 +3,8 @@ QT += qml quick
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    mindmapview.cpp
+    mindmapview.cpp \
+    mmnode.cpp
 
 RESOURCES += qml.qrc
 
@@ -14,4 +15,5 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    mindmapview.h
+    mindmapview.h \
+    mmnode.h
