@@ -30,7 +30,12 @@ void MindMapView::paint(QPainter *painter)
         return;
     }
 
+    painter->fillRect(contentsBoundingRect(), Qt::white);
+    m_root->paint(painter);
+}
 
-
-
+void MindMapView::setRootNode(MindMapNode *root)
+{
+    m_root = root;
+    update();
 }

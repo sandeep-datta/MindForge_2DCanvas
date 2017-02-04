@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 
 #include "mindmapview.h"
+#include "mindmaploader.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,19 +14,17 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
 
+    MindMapNode *rootNode = MindMapLoader::load();
 
+    rootNode->setParent(&engine);
 
     foreach(QObject *rootObject, engine.rootObjects())
     {
         auto mmv =  rootObject->findChild<MindMapView*>("mindMapView");
         if (mmv) {
-            qDebug()<<"FOUND!"<<endl;
+            mmv->setRootNode(rootNode);
         }
     }
-
-
-
-    //Q_ASSERT(mmv);
 
     return app.exec();
 }

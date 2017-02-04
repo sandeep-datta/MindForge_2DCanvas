@@ -4,7 +4,8 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     mindmapview.cpp \
-    mindmapnode.cpp
+    mindmapnode.cpp \
+    mindmaploader.cpp
 
 RESOURCES += qml.qrc
 
@@ -16,4 +17,5 @@ include(deployment.pri)
 
 HEADERS += \
     mindmapview.h \
-    mindmapnode.h
+    mindmapnode.h \
+    mindmaploader.h
