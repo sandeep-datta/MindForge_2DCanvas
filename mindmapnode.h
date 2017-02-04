@@ -5,11 +5,11 @@
 #include <QList>
 #include <QPainter>
 
-class MmNode : public QObject
+class MindMapNode : public QObject
 {
     Q_OBJECT
 public:
-    explicit MmNode(QObject *parent = 0);
+    explicit MindMapNode(QObject *parent = 0);
     const QRectF *boundingRect() const;
     void paint(QPainter *painter);
     void setText(const QString &text);
@@ -25,7 +25,7 @@ private: //Methods
 
 private: //Variables
     QString m_text;
-    QList<MmNode> m_children;
+    QList<MindMapNode> m_children;
     QRectF m_bounds;
     bool   m_boundsValid;
 

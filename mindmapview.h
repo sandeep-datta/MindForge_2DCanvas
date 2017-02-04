@@ -2,7 +2,7 @@
 #define MINDMAPWIDGET_H
 
 #include <QtQuick>
-#include "mmnode.h"
+#include "mindmapnode.h"
 
 class MindMapView : public QQuickPaintedItem
 {
@@ -13,7 +13,7 @@ public:
     void paint(QPainter *painter);
 
 private:
-    MmNode *m_root;
+    MindMapNode *m_root;
 };
 
 #endif // MINDMAPWIDGET_H
