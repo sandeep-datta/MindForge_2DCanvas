@@ -2,6 +2,7 @@
 #define MMNODE_H
 
 #include <QObject>
+#include <QList>
 
 class MmNode : public QObject
 {
@@ -16,6 +17,7 @@ public slots:
 
 private:
     QString m_text;
+    QList<MmNode> m_children;
 };
 
 #endif // MMNODE_H

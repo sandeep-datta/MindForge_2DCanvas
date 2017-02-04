@@ -2,6 +2,7 @@
 #define MINDMAPWIDGET_H
 
 #include <QtQuick>
+#include "mmnode.h"
 
 class MindMapView : public QQuickPaintedItem
 {
