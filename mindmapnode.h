@@ -11,7 +11,7 @@ class MindMapNode : public QObject
 public:
     explicit MindMapNode(QObject *parent = 0);
     const QRectF *boundingRect() const;
-    void paint(QPainter *painter);
+    void paint(QPainter *painter, const QRectF &paintableArea);
     void setText(const QString &text);
     const qreal MAX_WIDTH = 600.0;
     void setPos(const QPointF& pos);

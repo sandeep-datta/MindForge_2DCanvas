@@ -17,7 +17,7 @@ const QRectF* MindMapNode::boundingRect() const
     return &m_bounds;
 }
 
-void MindMapNode::paint(QPainter *painter)
+void MindMapNode::paint(QPainter *painter, const QRectF& paintableArea)
 {
     painter->drawText(m_bounds, Qt::TextWordWrap|Qt::TextDontClip,
                       m_text, &m_bounds);
