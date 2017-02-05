@@ -4,10 +4,18 @@
 #include "mindmapview.h"
 #include "mindmaploader.h"
 
+void myMessageOutput(QtMsgType, const QMessageLogContext &, const QString &msg)
+{
+    QByteArray localMsg = msg.toLocal8Bit();
+    fprintf(stderr, "%s", localMsg.constData());
+}
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+
+    qInstallMessageHandler(myMessageOutput);
 
     qmlRegisterType<MindMapView>("MindForge", 1, 0, "MindMapView");
 
@@ -25,6 +33,8 @@ int main(int argc, char *argv[])
             mmv->setRootNode(rootNode);
         }
     }
+
+
 
     return app.exec();
 }
