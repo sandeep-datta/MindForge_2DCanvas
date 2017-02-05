@@ -8,20 +8,17 @@ MindMapLoader::MindMapLoader()
 MindMapNode *MindMapLoader::load()
 {
     auto root = new MindMapNode(nullptr);
-
     root->setText("Root node.");
 
-    auto first = new MindMapNode(root);
-    first->setText("First child node.");
+    auto first = root->addChild("First child node.");
 
-    auto second = new MindMapNode(root);
-    second->setText("Second child node.");
+    root->addChild("Second child node.");
 
-    auto third = new MindMapNode(root);
-    third->setText("Third child node.");
+    root->addChild("Third child node.");
 
-    auto firstGrand = new MindMapNode(first);
-    firstGrand->setText("First grand child node.");
+    first->addChild("First grand child node.");
+
+    first->addChild("Second grand child node.");
 
     return root;
 }
