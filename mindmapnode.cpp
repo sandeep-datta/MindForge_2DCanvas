@@ -36,7 +36,7 @@ void MindMapNode::paint(QPainter *painter, qreal x, qreal y)
 
     cbHeight += (m_children.length() - 1) * Y_MARGIN;
 
-    qreal childY = cbHeight / 2.0;
+    qreal childY = m_bounds.top() + m_bounds.height() / 2.0  - cbHeight / 2.0;
 
     foreach(MindMapNode* child, m_children) {
         child->paint(painter, childX, childY);

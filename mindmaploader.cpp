@@ -12,13 +12,17 @@ MindMapNode *MindMapLoader::load()
 
     auto first = root->addChild("First child node.");
 
-    root->addChild("Second child node.");
+    auto second = root->addChild("Second child node.");
 
     root->addChild("Third child node.");
 
     first->addChild("First grand child node.");
 
     first->addChild("Second grand child node.");
+
+    second->addChild("Third grand child node.");
+
+    second->addChild("Fourth grand child node.");
 
     return root;
 }
