@@ -1,1 +1,9 @@
+
+- Optimize textBoundingRect by caching its value. Update cached value when m_text is changed.
+- Use QPointF structure instead of separate coordinate variables in the paint() function.
+
+
+======
+ DONE
+======
 - Add method moveTo to MindMapNode and remove x, y parameters from the paint method.

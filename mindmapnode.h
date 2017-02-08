@@ -17,10 +17,10 @@ public:
     explicit MindMapNode(QObject *parent = 0);
     QRectF textBoundingRect(QPainter *painter) const;
     qreal subTreeYSize(QPainter *painter) const;
-    void paint(QPainter *painter, qreal x, qreal y);
+    void paint(QPainter *painter);
     void setText(const QString &text);
     void setColor(QColor color);
-    void setPos(qreal x, qreal y);
+    void moveTo(qreal x, qreal y);
     MindMapNode *addChild(QString text, QColor color=Qt::black);
 
 signals:

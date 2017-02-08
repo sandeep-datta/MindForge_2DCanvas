@@ -40,10 +40,8 @@ qreal MindMapNode::subTreeYSize(QPainter *painter) const
 }
 
 
-void MindMapNode::paint(QPainter *painter, qreal x, qreal y)
+void MindMapNode::paint(QPainter *painter)
 {
-    setPos(x, y);
-
     m_bounds = textBoundingRect(painter);
 
     painter->save();
@@ -57,7 +55,7 @@ void MindMapNode::paint(QPainter *painter, qreal x, qreal y)
 
     painter->restore();
 
-    qreal childX = x + m_bounds.width() + X_MARGIN;
+    qreal childX = m_bounds.left() + m_bounds.width() + X_MARGIN;
 
     qreal stySize = subTreeYSize(painter);
 
@@ -74,7 +72,8 @@ void MindMapNode::paint(QPainter *painter, qreal x, qreal y)
         childY += childSubTreeYSize / 2.0;
 
         childY -= child->textBoundingRect(painter).height()/2;
-        child->paint(painter, childX, childY);
+        child->moveTo(childX, childY);
+        child->paint(painter);
         path.lineTo(child->textBoundingRect(painter).bottomLeft());
         painter->drawPath(path);
 
@@ -106,7 +105,7 @@ MindMapNode* MindMapNode::addChild(QString text, QColor color)
     return child;
 }
 
-void MindMapNode::setPos(qreal x, qreal y)
+void MindMapNode::moveTo(qreal x, qreal y)
 {
     m_bounds.moveTo(x, y);
 }

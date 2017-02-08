@@ -36,7 +36,8 @@ void MindMapView::paint(QPainter *painter)
     qreal y = (paintableRect.height() -
                m_root->textBoundingRect(painter).height())/2;
 
-    m_root->paint(painter, paintableRect.left(), y);
+    m_root->moveTo(paintableRect.left(), y);
+    m_root->paint(painter);
 }
 
 void MindMapView::setRootNode(MindMapNode *root)
