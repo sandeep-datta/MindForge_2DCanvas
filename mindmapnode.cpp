@@ -7,19 +7,26 @@ MindMapNode::MindMapNode(QObject *parent)
     : QObject(parent)
     , m_bounds(0.0, 0.0, MAX_WIDTH, 0.0)
     , m_color(Qt::black)
+    , m_updateTextBoundingRect(true)
 {
 
 }
 
-QRectF MindMapNode::textBoundingRect(QPainter *painter) const
+QRectF MindMapNode::textBoundingRect(QPainter *painter)
 {
 
-    return painter->boundingRect(m_bounds,
-                           Qt::TextWordWrap|Qt::TextDontClip,
-                                 m_text);
+    if (m_updateTextBoundingRect) {
+        m_bounds = painter->boundingRect(m_bounds,
+                                     Qt::TextWordWrap|Qt::TextDontClip,
+                                     m_text);
+        m_updateTextBoundingRect = false;
+    }
+
+    return m_bounds;
+
 }
 
-qreal MindMapNode::subTreeYSize(QPainter *painter) const
+qreal MindMapNode::subTreeYSize(QPainter *painter)
 {
     qreal ySize = 0.0;
 
@@ -89,6 +96,7 @@ void MindMapNode::setText(const QString &text)
         return;
 
     m_text = text;
+    m_updateTextBoundingRect = true;
 }
 
 void MindMapNode::setColor(QColor color)

@@ -15,8 +15,8 @@ public: //Constants
 
 public:
     explicit MindMapNode(QObject *parent = 0);
-    QRectF textBoundingRect(QPainter *painter) const;
-    qreal subTreeYSize(QPainter *painter) const;
+    QRectF textBoundingRect(QPainter *painter);
+    qreal subTreeYSize(QPainter *painter);
     void paint(QPainter *painter);
     void setText(const QString &text);
     void setColor(QColor color);
@@ -31,10 +31,11 @@ private: //Methods
     //None so far
 
 private: //Variables
-    QString m_text;
+    QString             m_text;
     QList<MindMapNode*> m_children;
-    QRectF m_bounds;
-    QColor m_color;
+    QRectF              m_bounds;
+    QColor              m_color;
+    bool                m_updateTextBoundingRect;
 };
 
 #endif // MMNODE_H
