@@ -21,3 +21,6 @@ HEADERS += \
     mindmapnode.h \
     mindmaploader.h \
     diagnostics.h
+
+DISTFILES += \
+    TODO.txt

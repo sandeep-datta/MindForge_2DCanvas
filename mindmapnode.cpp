@@ -53,6 +53,8 @@ void MindMapNode::paint(QPainter *painter, qreal x, qreal y)
     painter->drawText(m_bounds, Qt::TextWordWrap|Qt::TextDontClip,
                   m_text, &m_bounds);
 
+    painter->drawLine(m_bounds.bottomLeft(), m_bounds.bottomRight());
+
     painter->restore();
 
     qreal childX = x + m_bounds.width() + X_MARGIN;
@@ -64,10 +66,18 @@ void MindMapNode::paint(QPainter *painter, qreal x, qreal y)
                     - stySize / 2.0;
 
     foreach(MindMapNode* child, m_children) {
+        QPainterPath path;
+        path.moveTo(m_bounds.bottomRight());
+
+
         qreal childSubTreeYSize = child->subTreeYSize(painter);
         childY += childSubTreeYSize / 2.0;
+
         childY -= child->textBoundingRect(painter).height()/2;
         child->paint(painter, childX, childY);
+        path.lineTo(child->textBoundingRect(painter).bottomLeft());
+        painter->drawPath(path);
+
         childY += child->textBoundingRect(painter).height()/2;
         childY += childSubTreeYSize / 2.0;
         childY += Y_MARGIN;

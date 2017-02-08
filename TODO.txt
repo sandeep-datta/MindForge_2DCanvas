@@ -1,0 +1,1 @@
+- Add method moveTo to MindMapNode and remove x, y parameters from the paint method.
