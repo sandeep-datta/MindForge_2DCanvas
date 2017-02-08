@@ -44,6 +44,7 @@ MindMapNode *MindMapLoader::load()
 //    root->addChild("Third child node.");
 
     first->addChild("First grand child node.");
+    first->setColor(Qt::red);
 
     first->addChild("Second grand child node.");
 

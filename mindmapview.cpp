@@ -4,7 +4,7 @@ MindMapView::MindMapView(QQuickItem *parent)
     : QQuickPaintedItem(parent)
     , m_root(nullptr)
 {
-    //setAntialiasing(true);
+    setAntialiasing(true);
     setOpaquePainting(true);
 }
 

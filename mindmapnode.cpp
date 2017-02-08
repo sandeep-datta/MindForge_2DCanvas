@@ -58,11 +58,19 @@ void MindMapNode::paint(QPainter *painter)
     painter->drawText(m_bounds, Qt::TextWordWrap|Qt::TextDontClip,
                   m_text, &m_bounds);
 
-    painter->drawLine(m_bounds.bottomLeft(), m_bounds.bottomRight());
-
     painter->restore();
 
-    qreal childX = m_bounds.left() + m_bounds.width() + X_MARGIN;
+    painter->setPen(QPen(Qt::black, 2));
+
+    painter->drawLine(m_bounds.bottomLeft(), m_bounds.bottomRight());
+
+
+
+
+
+    const qreal childX = m_bounds.left() + m_bounds.width() + X_MARGIN;
+
+    const qreal cpX = m_bounds.right() + X_MARGIN / 2;
 
     qreal stySize = subTreeYSize(painter);
 
@@ -72,16 +80,20 @@ void MindMapNode::paint(QPainter *painter)
 
     foreach(MindMapNode* child, m_children) {
         QPainterPath path;
-        path.moveTo(m_bounds.bottomRight());
-
 
         qreal childSubTreeYSize = child->subTreeYSize(painter);
         childY += childSubTreeYSize / 2.0;
 
         childY -= child->textBoundingRect(painter).height()/2;
+
         child->moveTo(childX, childY);
         child->paint(painter);
-        path.lineTo(child->textBoundingRect(painter).bottomLeft());
+        QPointF cp1(cpX, m_bounds.bottom());
+        QPointF cp2(cpX, child->textBoundingRect(painter).bottom());
+        const QPointF &end = child->textBoundingRect(painter).bottomLeft();
+
+        path.moveTo(m_bounds.bottomRight());
+        path.cubicTo(cp1, cp2, end);
         painter->drawPath(path);
 
         childY += child->textBoundingRect(painter).height()/2;
