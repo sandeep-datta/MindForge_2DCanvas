@@ -22,6 +22,8 @@ public:
     void setText(const QString &text);
     void setColor(QColor color);
     void moveTo(qreal x, qreal y);
+    void moveTo(QPointF p);
+    void translate(const QPointF &displacement);
     MindMapNode *addChild(QString text, QColor color=Qt::black);
 
 signals:

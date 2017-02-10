@@ -15,7 +15,7 @@ public:
 
 private:
     void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
 
@@ -24,6 +24,7 @@ private:
     bool m_bMouseDown;
     QPointF m_clickPos;
     QPointF m_rootNodePos;
+    bool m_rootCentered;
 };
 
 #endif // MINDMAPWIDGET_H

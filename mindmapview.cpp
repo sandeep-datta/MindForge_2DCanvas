@@ -4,6 +4,7 @@ MindMapView::MindMapView(QQuickItem *parent)
     : QQuickPaintedItem(parent)
     , m_root(nullptr)
     , m_bMouseDown(false)
+    , m_rootCentered(false)
 {
     setAntialiasing(true);
     setOpaquePainting(true);
@@ -22,7 +23,11 @@ void MindMapView::paint(QPainter *painter)
     painter->fillRect(paintableRect, Qt::white);
 
     m_root->updateTextBounds(painter);
-    m_root->moveTo(paintableRect.left(), paintableRect.height()/2);
+
+    if (m_rootCentered) {
+        m_root->moveTo(paintableRect.left(), paintableRect.height()/2);
+        m_rootCentered = true;
+    }
     m_root->paint(painter);
 }
 
@@ -37,22 +42,29 @@ void MindMapView::mousePressEvent(QMouseEvent *event)
     event->accept();
     m_bMouseDown = true;
     m_clickPos = event->localPos();
-    //qDebug() << "mousePressEvent" << pos.x() << pos.y();
+    //qDebug() << "mousePressEvent" << m_clickPos.x() << m_clickPos.y();
 }
 
-void MindMapView::mouseReleaseEvent(QMouseEvent *event)
+void MindMapView::mouseReleaseEvent(QMouseEvent *)
 {
     m_bMouseDown = false;
 
-    //qDebug() << "mouseReleaseEvent" << pos.x() << pos.y();
+    //qDebug() << "mouseReleaseEvent";
 }
 
 void MindMapView::mouseMoveEvent(QMouseEvent *event)
 {
-    event->accept();
-    QPointF pos = event->localPos();
-    //TODO: move the root node.
-    //qDebug() << "mouseMoveEvent" << pos.x() << pos.y();
+    if (m_bMouseDown) {
+        event->accept();
+        QPointF pos = event->localPos();
+        //m_root->translate(m_clickPos - pos);
+        m_root->translate(pos - m_clickPos);
+        m_clickPos = pos;
+        update();
+        //qDebug() << "mouseMoveEvent" << pos.x() << pos.y() << (m_clickPos - pos);
+        //qDebug() << "mouseMoveEvent" << pos.x() << pos.y() << (pos - m_clickPos);
+
+    }
 }
 
 void MindMapView::wheelEvent(QWheelEvent *event)

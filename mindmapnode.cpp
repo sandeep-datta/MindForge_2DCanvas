@@ -128,3 +128,13 @@ void MindMapNode::moveTo(qreal x, qreal y)
     Q_ASSERT(!m_updateTextBoundingRect);
     m_bounds.moveTo(x, y - m_bounds.height() / 2);
 }
+
+void MindMapNode::moveTo(QPointF p)
+{
+    moveTo(p.x(), p.y());
+}
+
+void MindMapNode::translate(const QPointF& displacement)
+{
+    m_bounds.translate(displacement);
+}
