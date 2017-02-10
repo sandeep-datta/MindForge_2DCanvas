@@ -21,7 +21,8 @@ void MindMapView::paint(QPainter *painter)
 
     painter->fillRect(paintableRect, Qt::white);
 
-    m_root->moveTo(paintableRect.left(), paintableRect.height()/2, painter);
+    m_root->updateTextBounds(painter);
+    m_root->moveTo(paintableRect.left(), paintableRect.height()/2);
     m_root->paint(painter);
 }
 
