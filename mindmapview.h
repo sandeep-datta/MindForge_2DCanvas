@@ -14,7 +14,16 @@ public:
     void setRootNode(MindMapNode *root);
 
 private:
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void wheelEvent(QWheelEvent *event);
+
+private:
     MindMapNode *m_root;
+    bool m_bMouseDown;
+    QPointF m_clickPos;
+    QPointF m_rootNodePos;
 };
 
 #endif // MINDMAPWIDGET_H
