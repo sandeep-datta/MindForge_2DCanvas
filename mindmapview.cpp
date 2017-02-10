@@ -19,10 +19,7 @@ void MindMapView::paint(QPainter *painter)
 
     painter->fillRect(paintableRect, Qt::white);
 
-    qreal y = (paintableRect.height() -
-               m_root->textBoundingRect(painter).height())/2;
-
-    m_root->moveTo(paintableRect.left(), y);
+    m_root->moveTo(paintableRect.left(), paintableRect.height()/2, painter);
     m_root->paint(painter);
 }
 
