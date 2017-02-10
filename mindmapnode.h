@@ -20,7 +20,7 @@ public:
     void paint(QPainter *painter);
     void setText(const QString &text);
     void setColor(QColor color);
-    void moveTo(qreal x, qreal y);
+    void moveTo(qreal x, qreal y, QPainter *painter);
     MindMapNode *addChild(QString text, QColor color=Qt::black);
 
 signals:
