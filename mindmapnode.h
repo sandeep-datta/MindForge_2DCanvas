@@ -15,12 +15,13 @@ public: //Constants
 
 public:
     explicit MindMapNode(QObject *parent = 0);
-    QRectF textBoundingRect(QPainter *painter);
-    qreal subTreeYSize(QPainter *painter);
+    void updateTextBounds(QPainter *painter);
+    QRectF textBoundingRect();
+    qreal subTreeYSize();
     void paint(QPainter *painter);
     void setText(const QString &text);
     void setColor(QColor color);
-    void moveTo(qreal x, qreal y, QPainter *painter);
+    void moveTo(qreal x, qreal y);
     MindMapNode *addChild(QString text, QColor color=Qt::black);
 
 signals:
