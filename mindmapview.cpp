@@ -41,7 +41,7 @@ void MindMapView::mousePressEvent(QMouseEvent *event)
 {
     event->accept();
     m_bMouseDown = true;
-    m_clickPos = event->localPos();
+    m_lastPos = event->localPos();
     //qDebug() << "mousePressEvent" << m_clickPos.x() << m_clickPos.y();
 }
 
@@ -58,8 +58,8 @@ void MindMapView::mouseMoveEvent(QMouseEvent *event)
         event->accept();
         QPointF pos = event->localPos();
         //m_root->translate(m_clickPos - pos);
-        m_root->translate(pos - m_clickPos);
-        m_clickPos = pos;
+        m_root->translate(pos - m_lastPos);
+        m_lastPos = pos;
         update();
         //qDebug() << "mouseMoveEvent" << pos.x() << pos.y() << (m_clickPos - pos);
         //qDebug() << "mouseMoveEvent" << pos.x() << pos.y() << (pos - m_clickPos);

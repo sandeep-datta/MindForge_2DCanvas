@@ -22,7 +22,7 @@ private:
 private:
     MindMapNode *m_root;
     bool m_bMouseDown;
-    QPointF m_clickPos;
+    QPointF m_lastPos;
     QPointF m_rootNodePos;
     bool m_rootCentered;
 };
