@@ -1,4 +1,5 @@
 - Load mindmaps from file system
+- Make the mind map scrollable
 - Make the mind map editable
 - Optimize textBoundingRect by caching its value. Update cached value when m_text is changed.
 - Use QPointF structure instead of separate coordinate variables in the paint() function.

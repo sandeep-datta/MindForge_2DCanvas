@@ -51,21 +51,14 @@ void MindMapNode::paint(QPainter *painter)
 {
     m_bounds = textBoundingRect(painter);
 
-    painter->save();
-
     painter->setPen(QPen(m_color));
 
     painter->drawText(m_bounds, Qt::TextWordWrap|Qt::TextDontClip,
                   m_text, &m_bounds);
 
-    painter->restore();
-
-    painter->setPen(QPen(Qt::black, 2));
+    painter->setPen(QPen(Qt::gray, 1));
 
     painter->drawLine(m_bounds.bottomLeft(), m_bounds.bottomRight());
-
-
-
 
 
     const qreal childX = m_bounds.left() + m_bounds.width() + X_MARGIN;
