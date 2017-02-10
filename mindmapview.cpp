@@ -24,16 +24,18 @@ void MindMapView::paint(QPainter *painter)
 
     m_root->updateTextBounds(painter);
 
-    if (m_rootCentered) {
+    if (!m_rootCentered) {
         m_root->moveTo(paintableRect.left(), paintableRect.height()/2);
         m_rootCentered = true;
     }
+
     m_root->paint(painter);
 }
 
 void MindMapView::setRootNode(MindMapNode *root)
 {
     m_root = root;
+    m_rootCentered = false;
     update();
 }
 
@@ -42,14 +44,11 @@ void MindMapView::mousePressEvent(QMouseEvent *event)
     event->accept();
     m_bMouseDown = true;
     m_lastPos = event->localPos();
-    //qDebug() << "mousePressEvent" << m_clickPos.x() << m_clickPos.y();
 }
 
 void MindMapView::mouseReleaseEvent(QMouseEvent *)
 {
     m_bMouseDown = false;
-
-    //qDebug() << "mouseReleaseEvent";
 }
 
 void MindMapView::mouseMoveEvent(QMouseEvent *event)
@@ -57,13 +56,9 @@ void MindMapView::mouseMoveEvent(QMouseEvent *event)
     if (m_bMouseDown) {
         event->accept();
         QPointF pos = event->localPos();
-        //m_root->translate(m_clickPos - pos);
         m_root->translate(pos - m_lastPos);
         m_lastPos = pos;
         update();
-        //qDebug() << "mouseMoveEvent" << pos.x() << pos.y() << (m_clickPos - pos);
-        //qDebug() << "mouseMoveEvent" << pos.x() << pos.y() << (pos - m_clickPos);
-
     }
 }
 
